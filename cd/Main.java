@@ -20,226 +20,248 @@ public class Main {
 		String interprete;
 		int temas;
 		
-		int op1 = elegirOpcion1(teclado);
+		char op1;
 		
-		int op = elegirOpcion(teclado);
+		 op1 = elegirOpcion1(teclado);
 		
-		int op2 = elegirOpcion3(teclado);
-		
-		while(op != 11) {
+		if (op1 == 'd') {
 			
-			switch(op) {
+			int op = elegirOpcion(teclado);
 			
-				case 1: 
-					System.out.print("Ingrese el titulo del dvd: ");
-					teclado.nextLine();
-					titulo = teclado.nextLine();
-					//Limpiamos buffer
-					
-					
-					System.out.print("Ingrese el genero: ");
-					genero = teclado.nextLine();
-					
-					System.out.print("Ingrese el director: ");
-					director = teclado.nextLine();
-					
-					System.out.print("Ingrese la duracion: ");
-					duracion = teclado.nextInt();
-					
-					System.out.print("Tenemos el dvd? [Y/N] ");
-					si_tenemos = teclado.next().charAt(0);
-					
-					System.out.print("Ingrese un comentario: ");
-					teclado.nextLine();
-					comentario = teclado.nextLine();
-					
-					
-					dvds.agregarDVD(titulo, genero, director, duracion, si_tenemos == 'Y', comentario);
-					break;
-					
-				case 2:
-					System.out.print("Ingrese titulo a eliminar: ");
-					titulo = teclado.nextLine();
-					teclado.nextLine();
-					
-					if(dvds.eliminarDVD(titulo)) {
-						System.out.println("El titulo se elimino con exito");
-					}
-					else {
-						System.out.println("Titulo invalido");
-					}
-					break;
+			while(op != 11) {
 				
-				case 3: 
-					System.out.println("Ingrese titulo a modificar: ");
-					titulo = teclado.nextLine();
-					teclado.nextLine();
-					
-					dvds.modificarDVD(titulo);
-					break;
+				switch(op) {
 				
-				case 4:
-					// Listar todos los dvds
-					dvds.listarDVDs();
-					//dvds.listarTodosDvd();
+					case 1: 
+						System.out.print("Ingrese el titulo del dvd: ");
+						teclado.nextLine();
+						titulo = teclado.nextLine();
+						//Limpiamos buffer
+						
+						
+						System.out.print("Ingrese el genero: ");
+						genero = teclado.nextLine();
+						
+						System.out.print("Ingrese el director: ");
+						director = teclado.nextLine();
+						
+						System.out.print("Ingrese la duracion: ");
+						duracion = teclado.nextInt();
+						
+						System.out.print("Tenemos el dvd? [Y/N] ");
+						si_tenemos = teclado.next().charAt(0);
+						
+						System.out.print("Ingrese un comentario: ");
+						teclado.nextLine();
+						comentario = teclado.nextLine();
+						
+						System.out.println("----------------------------------");
+						
+						dvds.agregarDVD(titulo, genero, director, duracion, si_tenemos == 'Y', comentario);
+						break;
+						
+					case 2:
+						System.out.print("Ingrese titulo a eliminar: ");
+						titulo = teclado.nextLine();
+						teclado.nextLine();
+						
+						if(dvds.eliminarDVD(titulo)) {
+							System.out.println("El titulo se elimino con exito");
+						}
+						else {
+							System.out.println("Titulo invalido");
+						}
+						System.out.println("----------------------------------");
+						break;
 					
-					break; 
+					case 3: 
+						System.out.print("Ingrese titulo a modificar: ");
+						teclado.nextLine();
+						titulo = teclado.nextLine();
+						
+						dvds.modificarDVD(titulo);
+						System.out.println("----------------------------------");
+						break;
 					
-				case 5:
-					// Listar los que tengo
-					dvds.listaTengo();
-					break;
-				case 6:
-					// que duran menos de un tiempo dado
-					System.out.println("Ingrese la duracion maxima: ");
-					int durMax = teclado.nextInt();
-					
-					dvds.listaDuracion(durMax);
-					break;
-				case 7:
-					// Dvds de un determinado director
-					System.out.println("Ingrese el director del dvd: ");
-					String dir = teclado.nextLine();
-					
-					dvds.listarTodosDvdDeUnDirector(dir);
-					break;
-				case 8:
-					System.out.println(dvds.listarPorTitulo()); 
-					break;
-				case 9:
-					System.out.println(dvds.cantidadTotal()+ " dvds");
-					break;
-				case 10:
-					System.out.println(dvds.cantidadTengo()+ " dvds que tengo");
-					break;
-				case 11:
-					break;
+					case 4:
+						// Listar todos los dvds
+						dvds.listarDVDs();
+						//dvds.listarTodosDvd();
+						System.out.println("----------------------------------");
+						break; 
+						
+					case 5:
+						// Listar los que tengo
+						dvds.listaTengo();
+						System.out.println("----------------------------------");
+						break;
+					case 6:
+						// que duran menos de un tiempo dado
+						System.out.println("Ingrese la duracion maxima: ");
+						int durMax = teclado.nextInt();
+						
+						dvds.listaDuracion(durMax);
+						System.out.println("----------------------------------");
+						break;
+					case 7:
+						// Dvds de un determinado director
+						System.out.println("Ingrese el director del dvd: ");
+						String dir = teclado.nextLine();
+						
+						dvds.listarTodosDvdDeUnDirector(dir);
+						System.out.println("----------------------------------");
+						break;
+					case 8:
+						System.out.println(dvds.listarPorTitulo()); 
+						System.out.println("----------------------------------");
+						break;
+					case 9:
+						System.out.println(dvds.cantidadTotal()+ " dvds");
+						System.out.println("----------------------------------");
+						break;
+					case 10:
+						System.out.println(dvds.cantidadTengo()+ " dvds que tengo");
+						System.out.println("----------------------------------");
+						break;
+					case 11:
+						break;
+				}
+				
+				System.out.println("\n");
+				op= elegirOpcion(teclado);
 			}
-			
-			System.out.println("\n");
-			op= elegirOpcion(teclado);
 		}
 		
-		while(op2 != 11) {
+		if(op1 == 'c') {
 			
-			switch(op2) {
-			
-				case 1: 
-					System.out.print("Ingrese el titulo del cd: ");
-					teclado.nextLine();
-					titulo = teclado.nextLine();
-					//Limpiamos buffer
-					
-					System.out.println("Ingrese el interprete: ");
-					interprete = teclado.nextLine();
-					
-					System.out.println("Ingrese la cantidad de temas: ");
-					temas = teclado.nextInt();
-					
-					System.out.print("Ingrese la duracion: ");
-					duracion = teclado.nextInt();
-					
-					System.out.print("Tenemos el cd? [Y/N] ");
-					si_tenemos = teclado.next().charAt(0);
-					
-					System.out.print("Ingrese un comentario: ");
-					teclado.nextLine();
-					comentario = teclado.nextLine();
-					
-					System.out.print("Ingrese el genero: ");
-					genero = teclado.nextLine();
-					
-					cd.agregarCd(titulo,interprete,temas, duracion, si_tenemos == 'Y', comentario,genero);
-					break;
-					
-				case 2:
-					System.out.print("Ingrese titulo a eliminar: ");
-					titulo = teclado.nextLine();
-					teclado.nextLine();
-					
-					if(cd.eliminarDVD(titulo)) {
-						System.out.println("El titulo se elimino con exito");
-					}
-					else {
-						System.out.println("Titulo invalido");
-					}
-					break;
+			int op2 = elegirOpcion3(teclado);	
+		
+			while(op2 != 11) {
 				
-				case 3: 
-					System.out.println("Ingrese titulo a modificar: ");
-					titulo = teclado.nextLine();
-					teclado.nextLine();
-					
-					cd.modificarDVD(titulo);
-					break;
+				switch(op2) {
 				
-				case 4:
-					// Listar todos los cd
-					cd.listarTodos();
-					//dvds.listarTodosDvd();
+					case 1: 
+						System.out.print("Ingrese el titulo del cd: ");
+						teclado.nextLine();
+						titulo = teclado.nextLine();
+						//Limpiamos buffer
+						
+						System.out.print("Ingrese el interprete: ");
+						interprete = teclado.nextLine();
+						
+						System.out.print("Ingrese la cantidad de temas: ");
+						temas = teclado.nextInt();
+						
+						System.out.print("Ingrese la duracion: ");
+						duracion = teclado.nextInt();
+						
+						System.out.print("Tenemos el cd? [Y/N] ");
+						si_tenemos = teclado.next().charAt(0);
+						
+						System.out.print("Ingrese un comentario: ");
+						teclado.nextLine();
+						comentario = teclado.nextLine();
+						
+						System.out.print("Ingrese el genero: ");
+						genero = teclado.nextLine();
+						
+						cd.agregarCd(titulo,interprete,temas, duracion, si_tenemos == 'Y', comentario,genero);
+						
+						System.out.println("----------------------------------");
+						
+						break;
+						
+					case 2:
+						System.out.print("Ingrese titulo a eliminar: ");
+						titulo = teclado.nextLine();
+						teclado.nextLine();
+						
+						if(cd.eliminarDVD(titulo)) {
+							System.out.println("El titulo se elimino con exito");
+						}
+						else {
+							System.out.println("Titulo invalido");
+						}
+						System.out.println("----------------------------------");
+						break;
 					
-					break; 
+					case 3: 
+						System.out.println("Ingrese titulo a modificar: ");
+						teclado.nextLine();
+						titulo = teclado.nextLine();
+						
+						cd.modificarDVD(titulo);
+						
+						System.out.println("----------------------------------");
+						
+						break;
 					
-				case 5:
-					// Listar los que tengo
-					cd.listarTengo();
-					break;
-				case 6:
-					// que duran menos de un tiempo dado
-					System.out.println("Ingrese la duracion maxima: ");
-					int durMax = teclado.nextInt();
-					
-					cd.listaDuracion(durMax);
-					break;
-				case 7:
-					// Dvds de un determinado interprete
-					System.out.println("Ingrese el interprete del cd: ");
-					String inter = teclado.nextLine();
-					
-					cd.listarInterprete(inter);
-					break;
-				case 8:
-					System.out.println(cd.listarPorTitulo()); 
-					break;
-				case 9:
-					System.out.println(cd.cantidadTotal()+ " cds");
-					break;
-				case 10:
-					System.out.println(cd.cantidadTengo()+ " cds que tengo");
-					break;
-				case 11:
-					break;
+					case 4:
+						// Listar todos los cd
+						cd.listarTodos();
+						//dvds.listarTodosDvd();
+						System.out.println("----------------------------------");
+						break; 
+						
+					case 5:
+						// Listar los que tengo
+						cd.listarTengo();
+						
+						System.out.println("----------------------------------");
+						break;
+					case 6:
+						// que duran menos de un tiempo dado
+						System.out.println("Ingrese la duracion maxima: ");
+						int durMax = teclado.nextInt();
+						
+						cd.listaDuracion(durMax);
+						System.out.println("----------------------------------");
+						break;
+					case 7:
+						// Dvds de un determinado interprete
+						System.out.println("Ingrese el interprete del cd: ");
+						String inter = teclado.nextLine();
+						
+						cd.listarInterprete(inter);
+						System.out.println("----------------------------------");
+						break;
+					case 8:
+						System.out.println(cd.listarPorTitulo()); 
+						System.out.println("----------------------------------");
+						break;
+					case 9:
+						System.out.println(cd.cantidadTotal()+ " cds");
+						System.out.println("----------------------------------");
+						break;
+					case 10:
+						System.out.println(cd.cantidadTengo()+ " cds que tengo");
+						System.out.println("----------------------------------"); 
+						break;
+					case 11:
+						break;
+				}
+				
+				System.out.println("\n");
+				op2= elegirOpcion3(teclado);
 			}
-			
-			System.out.println("\n");
-			op2= elegirOpcion3(teclado);
 		}
+		
 		
 		teclado.close();
 	}
 	
-	public static int elegirOpcion1(Scanner teclado) {
+	public static char elegirOpcion1(Scanner teclado) {
 
-		int opcionDC;
+		char opcionDC;
 		System.out.println("Desea visualizar un DVD o un CD?");
 		System.out.print("Ingrese ---d--- para DVD y ---c--- para CD: ");
-		opcionDC = teclado.nextInt();
+		opcionDC = teclado.next().charAt(0);
 		
 		while (opcionDC != 'd' && opcionDC != 'c') {
 			
 			System.out.println("Ingrese una opcion: ");
 			System.out.print("---d--- para DVD y ---c--- para CD: ");
-			opcionDC = teclado.nextInt();
-		}
-		
-		if(opcionDC == 'd') {
-			
-			elegirOpcion(teclado);
-				
-		}
-		if (opcionDC == 'c' ) {
-				
-			elegirOpcion3(teclado);
+			opcionDC = teclado.next().charAt(0);
 		}
 		
 		return opcionDC;
@@ -261,9 +283,10 @@ public class Main {
 		System.out.println("11. Salir.\n");
 		System.out.print("Elija una opcion: ");
 		opcion= teclado.nextInt();
+		System.out.println("----------------------------------");
 		
 		while(opcion < 1 || opcion > 11) {
-			System.out.println("Ingrese una opcion valida: ");
+			System.out.print("Ingrese una opcion valida: ");
 			opcion= teclado.nextInt();
 		}
 		return opcion;
@@ -286,9 +309,10 @@ public class Main {
 		System.out.println("11. Salir.\n");
 		System.out.print("Elija una opcion: ");
 		opcion= teclado.nextInt();
+		System.out.println("----------------------------------");
 		
 		while(opcion < 1 || opcion > 11) {
-			System.out.println("Ingrese una opcion valida: ");
+			System.out.print("Ingrese una opcion valida: ");
 			opcion= teclado.nextInt();
 		}
 		return opcion;

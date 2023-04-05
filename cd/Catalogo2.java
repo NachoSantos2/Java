@@ -103,6 +103,9 @@ public class Catalogo2 {
 				
 			System.out.println(listaCd.get(i).toString());
 		}
+		if (listaCd.size() == 0) {
+			System.out.println("No hay ningun cd");
+		}
 			
 		return listaCd;
 		}
@@ -121,6 +124,12 @@ public class Catalogo2 {
 					
 				System.out.println(listaCd.get(i).toString());
 			}
+			else {
+				System.out.println("No lo tiene");
+			}
+		}
+		if (listaCd.size() == 0) {
+			System.out.println("No tengo ningun cd");
 		}
 		return listaCd;
 	}

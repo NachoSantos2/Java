@@ -81,8 +81,8 @@ public class CD {
 
 	@Override
 	public String toString() {
-		return "CD [titulo_Album=" + titulo_Album + ", Interprete=" + Interprete + ", temas=" + temas + ", duracion="
-				+ duracion + ", tenemos=" + tenemos + ", comentario=" + comentario + ", genero=" + genero + "]";
+		return "Titulo del CD = " + titulo_Album + "\nInterprete = " + Interprete + "\nTemas = " + temas + "\nDuracion =  "
+				+ duracion + "\nTenemos = " + tenemos + "\nComentario = " + comentario + "\nGenero = " + genero;
 	}
 	
 	

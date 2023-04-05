@@ -90,7 +90,7 @@ public class DVD {
 
 	@Override
 	public String toString() {
-	    return "DVD [titulo=" + titulo + ", genero=" + genero + ", director=" + director + ", duracion=" + duracion
-	            + ", tener=" + tener + ", comentario=" + comentario + "]";
+	    return "Titulo = " + titulo + "\nGenero = " + genero + "\nDirector = " + director + "\nDuracion = " + duracion
+	            + "\nTener = " + tener + "\nComentario = " + comentario;
 	}
 }

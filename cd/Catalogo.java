@@ -59,6 +59,9 @@ public class Catalogo {
         for (DVD dvd : listaDvds) {
             System.out.println(dvd);
         }
+        if(listaDvds.size() == 0) {
+        	System.out.println("No hay ningun dvd");
+        }
     }
 	// Devuelve lista de todos los DVDs del catalogo
 
@@ -149,6 +152,12 @@ public class Catalogo {
 				
 				System.out.println(listaDvds.get(i).toString());
 			}
+			else {
+				System.out.println("No lo tiene");
+			}
+		}
+		if(listaDvds.size() == 0) {
+			System.out.println("No hay ningun dvd");
 		}
 		return tengo;
 	}
