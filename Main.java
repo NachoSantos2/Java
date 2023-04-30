@@ -1,24 +1,32 @@
-package polimorfismo;
+package Ejercicio_8;
+
+import java.util.ArrayList;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		// arranco de la clase base(universidad), no se pueden instanciar objetos de una clase abstracta
-		Universidad ub = new Profesor("Juan Perez", 12345678, 34, "programacion", 12, 5000);
+		Transporte vehiculo1 = new Alimentos(4567565, "paquete de cereales", "Palermo", "Belgrano", "Cereales", 5, 10);
 		
-		// ub es el objeto polimormico
-		// diferentes objetos corresponden al mismo mensaje
-		System.out.println("sueldo profesor: " + ub.pago());
-		System.out.println(ub);
+		ArrayList<Transporte> listaAlimentos= new ArrayList <Transporte>();
 		
-		ub = new Alumno("Franco", 765678987, 20, "ing.informatica", 80000, 2387583);
-		System.out.println("Cuota alumno: " + ub.pago());
-		System.out.println(ub);
+		listaAlimentos.add(vehiculo1);
 		
-		ub = new Administrador("victor", 2343211, 50, 43421);
-		System.out.println("Sueldo administrador: "+ ub.pago());
-		System.out.println(ub);
+		for (int i=0; i<listaAlimentos.size();i++) {
+			
+			System.out.println(listaAlimentos.get(i));
+		}
+		
+		System.out.println("El precio del transporte es: " + vehiculo1.costoTransporte());
+		
+		System.out.println("");
+		
+		Transporte vehiculo2 = new Bultos(345389, "paquetes de yerba", "Puerto Madero", "China", 1000, 6000);
+		
+		System.out.println(vehiculo2);
+		
+		System.out.println("El precio del transporte es: " + vehiculo2.costoTransporte());
+		
 		
 	}
 }

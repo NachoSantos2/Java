@@ -17,6 +17,11 @@ public abstract class Transporte {
 		this.localidadLlegada = localidadLlegada;
 	}
 	
+	public Transporte() {
+		
+		
+	}
+	
 	// GETTERS Y SETTERS
 	public int getPatente() {
 		return patente;

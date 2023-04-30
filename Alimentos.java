@@ -1,11 +1,16 @@
 package Ejercicio_8;
 
+import java.util.*;
+
 public class Alimentos extends Transporte{
 	
 	// ATRIBUTOS DE LOS ALIMENTOS
 	private String tipo;
 	private int cantidad;
 	private double peso;
+	
+	private ArrayList<Transporte> tipos;
+	
 	
 	// CONSTRUCTOR DE LOS ALIMENTOS
 	public Alimentos(int patente, String descripcion, String localidadSalida, String localidadLlegada, String tipo,
@@ -14,8 +19,17 @@ public class Alimentos extends Transporte{
 		this.tipo = tipo;
 		this.cantidad = cantidad;
 		this.peso = peso;
+		this.tipos = new ArrayList<Transporte>();
 	}
 	
+	/*
+	 * public Alimentos() {
+		
+		this.tipos = new ArrayList<Transporte>();
+	}
+	 */
+	
+
 	// GETTERS Y SETTERS
 	public String getTipo() {
 		return tipo;
@@ -42,6 +56,11 @@ public class Alimentos extends Transporte{
 		return "Tipo = " + tipo + "\ndescripcion = " + descripcion + "\nLocalidad de Salida = "
 				+ localidadSalida + "\nLocalidad de Llegada = " + localidadLlegada + "\nCantidad: "+ cantidad;
 	}
+	
+	// METODO PARA METER LOS TIPOS DE ALIMENTOS EN EL ARRAYLIST 
+	public void agregarTipo(Transporte tipo) {
+		this.tipos.add(tipo); //Asi creo y añado parametros a un nuevo dvd 
+	}
 
 	@Override
 	public double costoTransporte() {
@@ -50,5 +69,5 @@ public class Alimentos extends Transporte{
 	}
 	
 	
-
+	
 }
