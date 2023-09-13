@@ -88,7 +88,7 @@ public class LISTANOD<T> {
     public void mostrar() {
         Nodo<T> actual = cabeza;
         while (actual != null) {
-            System.out.println(actual.getValor());
+            System.out.print(actual.getValor()+"-");
             actual = actual.getSiguiente();
         }
     }

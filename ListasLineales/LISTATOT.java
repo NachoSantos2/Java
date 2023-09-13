@@ -1,5 +1,6 @@
 package ListasLineales;
 
+import java.util.ArrayList;
 // IMPORTAMOS LA LIBRERIA LINKEDLIST
 import java.util.LinkedList;
 
@@ -36,10 +37,10 @@ public class LISTATOT<S>{
         return -1; // Elemento no encontrado, devuelve -1
     }
     
-    // ELIMINAR UN ELEMENTO AL PRINCIPIO DE LA LISTA
+    // ELIMINAR UN ELEMENTO DE LA LISTA
     public void eliminarElemento(S elemento) {
-        if (!listaTot.isEmpty() && listaTot.getFirst().equals(elemento)) {
-            listaTot.removeFirst();
+        if (!listaTot.isEmpty() && listaTot.contains(elemento)) {
+            listaTot.remove(elemento);
         }
     }
     
@@ -58,9 +59,11 @@ public class LISTATOT<S>{
     }
     
     // COPIAR LA LISTA
-    public void copiar() {
+    public LinkedList<S> copiar() {
+    	
         LinkedList<S> copia = new LinkedList<>(listaTot);
         // Ahora 'copia' es una copia independiente de 'listaTot'
+		return copia;
     }
     
     // SI LA LISTA ESTA VACIA
@@ -82,5 +85,19 @@ public class LISTATOT<S>{
     
     // falta el de unir listas y dividir en sublistas
     
+    public LinkedList<S> unir(LISTATOT<S>listaNueva) {
+    	
+    	LinkedList <S> resultado = new LinkedList<>(listaTot);
+    	
+    	for(S listaE : listaNueva.listaTot) {
+    		
+    		 if (!resultado.contains(listaE)) { // si el elemento no esta en la lista final se lo agrega
+                 resultado.add(listaE);
+             }
+    	}
+    	
+    	return resultado;
+    	
+    }
     
 }
