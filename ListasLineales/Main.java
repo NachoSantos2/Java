@@ -36,7 +36,7 @@ public class Main {
 		
 	}
 	
-	public static <S> void listaTot() {
+	public static void listaTot() {
 		
 		LISTATOT<String> listaTot = new LISTATOT<>();
 		
@@ -119,29 +119,33 @@ public class Main {
 					break;
 					
 				case 8:
-				    LISTATOT<String> otraLista = new LISTATOT<>();
-				    /*
-				     * System.out.print("Ingrese la cantidad de listas a unir: ");
+				    LinkedList<String> otraLista = new LinkedList<>();
+	
+				    System.out.print("Ingrese la cantidad de listas a unir: ");
             	    int cantidadListas = sc.nextInt();
             	    sc.nextLine();
-				     */
 				    
-				    boolean seguirAgregando = true;				    
-				    while (seguirAgregando) {
-				        System.out.print("Ingrese elemento para la nueva lista (o F para finalizar): ");
-				        sc.nextLine();
-				        String elementoNuevo = sc.nextLine();
-				        
-				        if (elementoNuevo.equals("F")) {
-				            seguirAgregando = false;
-				        } else {
-				            otraLista.agregarElemento(elementoNuevo);
-				        }
-				    }
-				    
-				    listaTot.unirListas(otraLista.copiar()); // Unir otraLista a listaTot
-				    System.out.println("Listas unidas con éxito.");
-				    break;
+            	    for (int i = 0; i < cantidadListas; i++) {
+            	        System.out.print("Ingrese un nombre para la lista " + (i + 1) + ": ");
+            	        String nombreLista = sc.nextLine();
+            	        LinkedList<String> lista2 = new LinkedList<>();
+            	        
+            	        // Usar un do-while para permitir al usuario ingresar elementos
+            	        do {
+            	            System.out.print("Ingrese un elemento para la lista " + (i + 1) + " (o escriba 'fin' para finalizar): ");
+            	            String elementoLista = sc.nextLine();
+            	            if (!elementoLista.equalsIgnoreCase("fin")) {
+            	                listaTot.agregarElemento(elementoLista);
+            	            } else {
+            	                break; // Salir del bucle cuando se escriba 'fin'
+            	            }
+            	        } while (true);
+            	        
+            	    }
+            	    listaTot.unirListas(otraLista);
+            	    listaTot.mostrarLista();
+					
+            	    break;
 				    
 				case 9:
 				    System.out.print("Ingrese el tamaño de las sublistas: ");
@@ -310,6 +314,5 @@ public class Main {
                     break;
             }
         } while (true);
-
 	}
 }

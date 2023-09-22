@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 public class LISTANOD<T> {
 
-	private Nodo<T> cabeza;
+	private Nodo<T> cabeza; // Nodo inicial de la lista enlazada
 	
 	// CONSTRUCTOR INICIALIZA LA CABEZA EN 0
 	public LISTANOD() {
 		
-		cabeza = null;
+		cabeza = null; // vacia cuando se la inicializa
 	}
 	
 	// METODO PARA LOCALIZAR UN ELEMENTO
@@ -44,11 +44,13 @@ public class LISTANOD<T> {
         Nodo<T> nuevoNodo = new Nodo<>(valor);
 
         if (posicion == 0) {
+        	// nuevo nodo se convierte en la cabeza
             nuevoNodo.setSiguiente(cabeza);
             cabeza = nuevoNodo;
             return;
         }
-
+        
+        
         Nodo<T> actual = cabeza;
         int contador = 0;
 
@@ -73,10 +75,12 @@ public class LISTANOD<T> {
         }
 
         if (cabeza.getValor().equals(valor)) {
+        	// se actualiza la cabeza para que apunte al siguiente nodo, eliminando así el primer nodo
             cabeza = cabeza.getSiguiente();
             return;
         }
-
+        
+        // Si el valor no esta en la cabeza recorro la lista enlazada
         Nodo<T> actual = cabeza;
         while (actual.getSiguiente() != null) {
             if (actual.getSiguiente().getValor().equals(valor)) {
@@ -87,21 +91,27 @@ public class LISTANOD<T> {
         }
     }
     
- // Método para ordenar los elementos en la lista de nodos
+    // Método para ordenar los elementos en la lista de nodos
     public void ordenarElementos() {
+        // Verifica si la lista está vacía o tiene solo un elemento; si es así, no es necesario ordenar
         if (cabeza == null || cabeza.getSiguiente() == null) {
-            return; // La lista está vacía o tiene un solo elemento, no es necesario ordenar
+            return;
         }
 
+        // Inicializa variables de nodos
         Nodo<T> actual = cabeza;
         Nodo<T> siguiente = actual.getSiguiente();
         Nodo<T> temp;
 
+        // Este bucle externo recorre toda la lista
         while (actual != null) {
             siguiente = actual.getSiguiente();
+
+            // Este bucle interno compara y ordena los elementos
             while (siguiente != null) {
-                // Compara los elementos y, si es necesario, intercámbialos
+                // Compara los elementos utilizando la interfaz Comparable
                 if (((Comparable<T>) actual.getValor()).compareTo(siguiente.getValor()) > 0) {
+                    // Si el elemento actual es mayor que el siguiente, intercambia los nodos
                     temp = actual;
                     actual = siguiente;
                     siguiente = temp;
@@ -111,7 +121,7 @@ public class LISTANOD<T> {
             actual = actual.getSiguiente();
         }
 
-        // Actualiza la cabeza de la lista
+        // Actualiza la cabeza de la lista al siguiente nodo (el nuevo nodo inicial después de la ordenación)
         cabeza = cabeza.getSiguiente();
     }
     
@@ -124,7 +134,7 @@ public class LISTANOD<T> {
         }
     }
 	
- // Método para copiar la lista
+    // Método para copiar la lista
     public LISTANOD<T> copiar() {
         LISTANOD<T> copia = new LISTANOD<>();
         Nodo<T> actual = cabeza;
@@ -140,7 +150,7 @@ public class LISTANOD<T> {
         return cabeza == null;
     }
     
- // Método para unir varias listas de nodos en una sola lista
+    // Método para unir varias listas de nodos en una sola lista
     public LISTANOD<T> unirListas(List<LISTANOD<T>> listas) {
         LISTANOD<T> listaUnida = new LISTANOD<>();
 
@@ -157,7 +167,7 @@ public class LISTANOD<T> {
         return listaUnida;
     }
 	
- // Método para dividir la lista en sublistas
+    // Método para dividir la lista en sublistas
     public List<LISTANOD<T>> dividirEnSublistas(int numeroSublistas) {
         if (numeroSublistas <= 0) {
             throw new IllegalArgumentException("El número de sublistas debe ser mayor que cero.");

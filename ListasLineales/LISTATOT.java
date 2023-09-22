@@ -60,9 +60,9 @@ public class LISTATOT<S>{
 	 // COPIAR LA LISTA
 	 public LinkedList<S> copiar() {
 	 	
-	     LinkedList<S> copia = new LinkedList<>(listaTot);
-	     // Ahora 'copia' es una copia independiente de 'listaTot'
-			return copia;
+	    LinkedList<S> copia = new LinkedList<>(listaTot);
+	    // Ahora 'copia' es una copia independiente de 'listaTot'
+		return copia;
 	 }
 	 
 	 // SI LA LISTA ESTA VACIA
@@ -81,11 +81,13 @@ public class LISTATOT<S>{
 	 	}
 	 	
 	 }
+	 
 	// Unir dos listas
-	 public void unirListas(LinkedList<S> otraLista) {
-	     listaTot.addAll(otraLista); // agregar todos los elementos de otraLista a la lista listaTot
-	 }
-	
+		 public void unirListas(LinkedList<S> otraLista) {
+		     listaTot.addAll(otraLista); // agregar todos los elementos de otraLista a la lista listaTot
+		 }
+		 
+		 
 	 // Dividir una lista en sublistas
 	 public LinkedList<LinkedList<S>> dividirEnSublistas(int tamañoSublista) {
 		    // Crear una lista de listas para almacenar las sublistas
