@@ -120,6 +120,12 @@ public class Main {
 					
 				case 8:
 				    LISTATOT<String> otraLista = new LISTATOT<>();
+				    /*
+				     * System.out.print("Ingrese la cantidad de listas a unir: ");
+            	    int cantidadListas = sc.nextInt();
+            	    sc.nextLine();
+				     */
+				    
 				    boolean seguirAgregando = true;				    
 				    while (seguirAgregando) {
 				        System.out.print("Ingrese elemento para la nueva lista (o F para finalizar): ");
