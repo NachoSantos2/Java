@@ -1,12 +1,13 @@
 package ListasLineales;
 
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.List;
 
 public class Main {
 
 	static int op;
 	static Scanner sc = new Scanner(System.in);
-    static int menuActual = 0; // 0 para el menú principal, 1 para el menú secundario de LISTATOT, 2 para el menú secundario de LISTANOD
 
     public static void main(String[] args) {
 
@@ -23,10 +24,8 @@ public class Main {
                 op = sc.nextInt();
             }
             if (op == 1) {
-                menuActual = 1;
                 listaTot();
             } else if (op == 2) {
-                menuActual = 2;
                 listaNod();
             } else if (op == 3) {
                 System.out.println("Saliendo del programa.");
@@ -37,7 +36,7 @@ public class Main {
 		
 	}
 	
-	public static void listaTot() {
+	public static <S> void listaTot() {
 		
 		LISTATOT<String> listaTot = new LISTATOT<>();
 		
@@ -120,102 +119,42 @@ public class Main {
 					break;
 					
 				case 8:
-					LISTATOT<String> listaTot2 = new LISTATOT<>();
-					do{
-						System.out.println("Menú:");
-						System.out.println("1. Insertar un elemento");
-						System.out.println("2. Insertar un elemento en una posicion especifica");
-			            System.out.println("3. Localizar un elemento");
-			            System.out.println("4. Eliminar un elemento");
-			            System.out.println("5. Eliminar elemento de una determinada posicion");
-			            System.out.println("6. Ordenar los elementos");
-			            System.out.println("7. Lista vacia?");
-			            System.out.println("8. Mostrar lista");	          
-			            System.out.println("9. Unirlas");
-			            System.out.println("10. Salir");
-			            System.out.println("Ingese opcion: ");
-			            op = sc.nextInt();
-			            
-			            while(op > 10 || op < 1) {
-			            	System.out.print("Ingrese una opcion nuevamente: ");
-			            	op = sc.nextInt();
-			            }
-						
-						switch(op) {
-						
-							case 1: 
-								System.out.print("Ingrese elemento a agregar: ");
-								sc.nextLine();
-								String elemento2 = sc.nextLine();					
-								listaTot2.agregarElemento(elemento2);
-								System.out.println("Elemento " + elemento2 + " agregado con exito");
-								break;
-							
-							case 2:
-								System.out.print("Ingrese elemento a agregar: ");
-								sc.nextLine();
-								String elemento3 = sc.nextLine();
-								System.out.print("Ingrese posicion donde agregar el elemento: ");
-								int posicion2 = sc.nextInt();
-								sc.nextLine();
-								listaTot2.agregarElementoEnPosicion(posicion2, elemento3);
-								System.out.println("Elemento: " + elemento3 + " agregado en la posicion: " + posicion2 + " con exito" );
-								break;
-								
-							case 3:
-								System.out.print("Ingrese elemento a localizar: ");
-								sc.nextLine();
-								String localizar2 = sc.nextLine();
-								int localizado2 = listaTot2.localizarElemento(localizar2);
-								System.out.println("Elemento localizado en la posicion: " + localizado2);
-								break;
-							
-							case 4:
-								System.out.print("Ingrese elemento a eliminar: ");
-								sc.nextLine();
-								String eliminar2 = sc.nextLine();
-								listaTot2.eliminarElemento(eliminar2);
-								System.out.println("Elemento " + eliminar2 + " eliminado con exito");
-								break;
-								
-							case 5:
-								System.out.println("Ingrese la posicion del elemento que desea eliminar: ");
-								int posicionEliminar2 = sc.nextInt();
-								listaTot2.eliminarElementoEnPosicion(posicionEliminar2);
-								System.out.println("Posicion y elemento eliminadas con exito");
-								break;
-								
-							case 6:
-								listaTot2.ordenarElementos();
-								System.out.println("Lista ordenada: ");
-								listaTot2.mostrarLista();
-								break;
-								
-							case 7:
-								if(listaTot2.esVacia()) {
-									
-									System.out.println("La lista esta vacia");
-								}
-								else {
-									System.out.println("La lista contiene elementos");
-								}
-								break;
-							
-							case 8:
-								System.out.println("Lista: ");
-								listaTot2.mostrarLista();
-								break;
-							case 9:
-								listaTot.unir(listaTot2);
-								break;
-							case 10:
-								System.out.println("Lista: ");
-								listaTot.mostrarLista();
-								break;
-						}
-					}while(op != 12);
+				    LISTATOT<String> otraLista = new LISTATOT<>();
+				    boolean seguirAgregando = true;				    
+				    while (seguirAgregando) {
+				        System.out.print("Ingrese elemento para la nueva lista (o F para finalizar): ");
+				        sc.nextLine();
+				        String elementoNuevo = sc.nextLine();
+				        
+				        if (elementoNuevo.equals("F")) {
+				            seguirAgregando = false;
+				        } else {
+				            otraLista.agregarElemento(elementoNuevo);
+				        }
+				    }
+				    
+				    listaTot.unirListas(otraLista.copiar()); // Unir otraLista a listaTot
+				    System.out.println("Listas unidas con éxito.");
+				    break;
+				    
 				case 9:
-					
+				    System.out.print("Ingrese el tamaño de las sublistas: ");
+				    int tamanoSublista = sc.nextInt();
+				    
+				    if (tamanoSublista <= 0 || tamanoSublista > listaTot.copiar().size()) {
+				        System.out.println("Tamaño de sublista no válido.");
+				    } else {
+				        LinkedList<LinkedList<String>> sublistas = listaTot.dividirEnSublistas(tamanoSublista);
+				        
+				        for (int i = 0; i < sublistas.size(); i++) {
+				            System.out.println("Sublista " + (i + 1) + ":");
+				            LinkedList<String> sublista = sublistas.get(i);
+				            for (String subelemento : sublista) {
+				                System.out.println(subelemento);
+				            }
+				        }
+				    }
+				    break;
 				case 10:
 					if(listaTot.esVacia()) {
 						
@@ -230,7 +169,7 @@ public class Main {
 					listaTot.mostrarLista();
 					break;
 				case 12:
-					menuActual = 0; // Restablece op a 0 antes de volver al menú principal
+					op = 0;
                     return; // Salir de listaTot() y volver al menú principal
 			}
 			
@@ -250,7 +189,10 @@ public class Main {
             System.out.println("5. Mostrar lista");
             System.out.println("6. Copiar la lista");
             System.out.println("7. Verificar si la lista está vacía");
-            System.out.println("8. Salir");
+            System.out.println("8. Ordenar lista");
+            System.out.println("9. Unir varias listas");
+            System.out.println("10. Dividir en sublistas");
+            System.out.println("11. Salir");
             System.out.print("Seleccione una opción: ");
             op = sc.nextInt();
 
@@ -307,6 +249,54 @@ public class Main {
                     }
                     break;
                 case 8:
+                	lista.ordenarElementos();
+                    System.out.println("Lista ordenada correctamente.");
+                    break;
+                case 9:
+                	LinkedList<LISTANOD<String>> listas = new LinkedList<>();
+
+            	    System.out.print("Ingrese la cantidad de listas a unir: ");
+            	    int cantidadListas = sc.nextInt();
+            	    sc.nextLine();
+
+            	    for (int i = 0; i < cantidadListas; i++) {
+            	        System.out.print("Ingrese un nombre para la lista " + (i + 1) + ": ");
+            	        String nombreLista = sc.nextLine();
+            	        LISTANOD<String> lista2 = new LISTANOD<>();
+            	        
+            	        // Usar un do-while para permitir al usuario ingresar elementos
+            	        do {
+            	            System.out.print("Ingrese un elemento para la lista " + (i + 1) + " (o escriba 'fin' para finalizar): ");
+            	            String elementoLista = sc.nextLine();
+            	            if (!elementoLista.equalsIgnoreCase("fin")) {
+            	                lista.agregarAlPrincipio(elementoLista);
+            	            } else {
+            	                break; // Salir del bucle cuando se escriba 'fin'
+            	            }
+            	        } while (true);
+            	        
+            	        listas.add(lista);
+            	    }
+            	    
+            	    lista.unirListas(listas);
+            	    
+            	    lista.mostrar();
+            	    
+            	    break;
+                case 10:
+                	System.out.print("Ingrese el numero de sublistas: ");
+                	int nSublistas = sc.nextInt();
+                	
+                	List<LISTANOD<String>> sublistas = lista.dividirEnSublistas(nSublistas);
+
+                    // Mostrar las sublistas resultantes
+                    for (int i = 0; i < nSublistas; i++) {
+                        System.out.println("Sublista " + (i + 1) + ":");
+                        sublistas.get(i).mostrar();
+                    }
+                    
+                	break;
+                case 11:
                 	op = 0; // Restablece op a 0 antes de volver al menú principal
                     return; // Salir de listaNod() y volver al menú principal
                 default:
